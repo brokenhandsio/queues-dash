@@ -55,24 +55,6 @@
       }
     },
     {
-      "identity" : "leaf",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/vapor/leaf",
-      "state" : {
-        "revision" : "6fe0e843c6599f5189e45c7b08739ebc5c410c3b",
-        "version" : "4.2.4"
-      }
-    },
-    {
-      "identity" : "leaf-kit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/vapor/leaf-kit.git",
-      "state" : {
-        "revision" : "13f2fc4c8479113cd23876d9a434ef4573e368bb",
-        "version" : "1.10.2"
-      }
-    },
-    {
       "identity" : "multipart-kit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/vapor/multipart-kit.git",
@@ -106,15 +88,6 @@
       "state" : {
         "revision" : "f1adaf4c925eb7074a4acf363172c1fa6ec888c8",
         "version" : "1.12.1"
-      }
-    },
-    {
-      "identity" : "queues-database-hooks",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/brokenhandsio/queues-database-hooks",
-      "state" : {
-        "revision" : "5d3ea41e5aae237fe89acc630bb6bfec636e8970",
-        "version" : "0.4.1"
       }
     },
     {
@@ -259,6 +232,15 @@
       "state" : {
         "revision" : "f4b00a5350238fe896d865d96d64f12fcbbeda95",
         "version" : "4.76.0"
+      }
+    },
+    {
+      "identity" : "vapor-queues-fluent-driver",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/m-barthelemy/vapor-queues-fluent-driver.git",
+      "state" : {
+        "revision" : "e2ce6775850bdbe277cb2e5792d05eff42434f52",
+        "version" : "3.0.0-beta1"
       }
     },
     {

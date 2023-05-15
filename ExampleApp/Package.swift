@@ -1,8 +1,8 @@
-// swift-tools-version:5.8
+// swift-tools-version:5.7
 import PackageDescription
 
 let package = Package(
-    name: "queues-dash",
+    name: "queues-example",
     platforms: [
        .macOS(.v12)
     ],
@@ -10,31 +10,26 @@ let package = Package(
         // 💧 A server-side Swift web framework.
         .package(url: "https://github.com/vapor/vapor.git", from: "4.76.0"),
         .package(url: "https://github.com/vapor/fluent.git", from: "4.8.0"),
-        .package(url: "https://github.com/vapor/leaf", from: "4.2.0"),
         .package(url: "https://github.com/vapor/fluent-postgres-driver.git", from: "2.7.2"),
-        .package(url: "https://github.com/brokenhandsio/queues-database-hooks", from: "0.4.0")
+        .package(url: "https://github.com/m-barthelemy/vapor-queues-fluent-driver.git", from: "3.0.0-beta1"),
+        .package(url: "https://github.com/vapor-community/queues-database-hooks.git", from: "0.3.0")
     ],
     targets: [
-        .target(
+        .executableTarget(
             name: "App",
             dependencies: [
-                .product(name: "Vapor", package: "vapor"),
-                .product(name: "QueuesDatabaseHooks", package: "queues-database-hooks"),
-                .product(name: "Leaf", package: "leaf"),
                 .product(name: "Fluent", package: "fluent"),
-                .product(name: "FluentPostgresDriver", package: "fluent-postgres-driver")
+                .product(name: "FluentPostgresDriver", package: "fluent-postgres-driver"),
+                .product(name: "Vapor", package: "vapor"),
+                .product(name: "QueuesFluentDriver", package: "vapor-queues-fluent-driver"),
+                .product(name: "QueuesDatabaseHooks", package: "queues-database-hooks")
             ],
             swiftSettings: [
                 // Enable better optimizations when building in Release configuration. Despite the use of
                 // the `.unsafeFlags` construct required by SwiftPM, this flag is recommended for Release
-                // builds. See <https://github.com/swift-server/guides#building-for-production> for details.
+                // builds. See <https://www.swift.org/server/guides/building.html#building-for-production> for details.
                 .unsafeFlags(["-cross-module-optimization"], .when(configuration: .release))
             ]
-        ),
-        .executableTarget(name: "Run", dependencies: [.target(name: "App")]),
-        .testTarget(name: "AppTests", dependencies: [
-            .target(name: "App"),
-            .product(name: "XCTVapor", package: "vapor"),
-        ])
+        )
     ]
 )

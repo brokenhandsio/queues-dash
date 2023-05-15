@@ -1,0 +1,28 @@
+{
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "sourceLanguages": [
+                "swift"
+            ],
+            "name": "Debug App",
+            "program": "${workspaceFolder:ExampleApp}/.build/debug/App",
+            "args": ["serve", "--port", "8081"],
+            "cwd": "${workspaceFolder:ExampleApp}",
+            "preLaunchTask": "swift: Build Debug App"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "sourceLanguages": [
+                "swift"
+            ],
+            "name": "Release App",
+            "program": "${workspaceFolder:ExampleApp}/.build/release/App",
+            "args": [],
+            "cwd": "${workspaceFolder:ExampleApp}",
+            "preLaunchTask": "swift: Build Release App"
+        }
+    ]
+}
