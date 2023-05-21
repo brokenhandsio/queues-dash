@@ -36,3 +36,22 @@ This is an early stage project so we know not everything is here yet... here's a
 3. More metrics and graphs about statuses
 4. Alerting when specific jobs fails
 5. Seeing data on a per-job basis (i.e. "show me the failure rate for my `EmailJob`")
+
+## Development
+
+Queues Dashboard uses [Tailwind CSS](https://tailwindcss.com/). If you want to change the appearance of the dashboard
+during development do not touch the `tailwind.css` file. Instead:
+
+1. Grab the Tailwind CSS standalone executable for your platform from the [latest release](https://github.com/tailwindlabs/tailwindcss/releases/latest) on GitHub, making sure to give it executable permissions:
+    ```bash
+    # Example for macOS arm64
+    curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-macos-arm64
+    chmod +x tailwindcss-macos-arm64
+    mv tailwindcss-macos-arm64 tailwindcss
+    ```
+
+2. To regenerate `tailwind.css` file:
+    ```bash
+    ./tailwindcss -i Resources/styles.css -o Public/build/tailwind.css
+    ```
+    > Optionally append `--watch` to continuosly regenerate the file as you edit the `.leaf` templates.
