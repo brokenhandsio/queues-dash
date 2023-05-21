@@ -12,6 +12,7 @@
 </head>
 
 <body>
+    <!-- Navigation Bar -->
     <nav class="bg-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
@@ -30,12 +31,14 @@
         </div>
     </nav>
 
-
+    <!-- Page content -->
     <div class="h-screen flex overflow-hidden bg-gray-100">
         <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none" tabindex="0">
             <div class="pt-2 pb-6 md:py-6">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <h1 class="text-2xl font-semibold text-gray-900">Dashboard</h1>
+
+                    <!-- Dropdown -->
                     <div class="md:w-1/4 mb-6 md:mb-0">
                         <div class="relative">
                             <select
@@ -61,6 +64,8 @@
                         </div>
                       </div>
                 </div>
+
+                <!-- Overview cards -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
                     <div>
                         <div class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
@@ -107,7 +112,7 @@
                                             Avg. Run Time
                                         </dt>
                                         <dd id="average-run-time" class="mt-1 text-3xl leading-9 font-semibold text-gray-900">
-                                            
+
                                         </dd>
                                     </dl>
                                 </div>
@@ -119,7 +124,7 @@
                                             Avg. Wait Time
                                         </dt>
                                         <dd id="average-wait-time" class="mt-1 text-3xl leading-9 font-semibold text-gray-900">
-                                            
+
                                         </dd>
                                     </dl>
                                 </div>
@@ -138,6 +143,8 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Charts -->
                     <div class="py-4">
                         <div>
                             <div class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2">
@@ -182,7 +189,8 @@
             [Math.floor((seconds % 31536000) / 86400), 'd'],
             [Math.floor(((seconds % 31536000) % 86400) / 3600), 'hr'],
             [Math.floor((((seconds % 31536000) % 86400) % 3600) / 60), 'm'],
-            [(((seconds % 31536000) % 86400) % 3600) % 60, 's'],
+            // prefixing with +, because we want an actual number, not a string.
+            [+((((seconds % 31536000) % 86400) % 3600) % 60).toFixed(2), 's'],
         ];
         var returntext = '';
 
@@ -203,14 +211,14 @@
         document.getElementById("average-wait-time").innerHTML = forHumans(#(timingData.avgWaitTime))
     #else:
         document.getElementById("average-wait-time").innerHTML = "N/A"
-    #endif    
+    #endif
 </script>
 
 <script>
     Number.prototype.m_formatter = function() {
         return this > 999999 ? (this / 1000000).toFixed(1) + 'M' : this
     };
-    
+
     let stockTicker = function(){
         return {
             chartData: {
@@ -219,17 +227,17 @@
             },
             renderChart: function(){
                 let c = false;
-    
+
                 Chart.helpers.each(Chart.instances, function(instance) {
                     if (instance.chart.canvas.id == 'chart') {
                         c = instance;
                     }
                 });
-    
+
                 if(c) {
                     c.destroy();
                 }
-    
+
                 let ctx = document.getElementById('chart').getContext('2d');
                 let chart = new Chart(ctx, {
                     type: "line",
@@ -289,17 +297,17 @@
             },
             renderChart: function(){
                 let c = false;
-    
+
                 Chart.helpers.each(Chart.instances, function(instance) {
                     if (instance.chart.canvas.id == 'chart2') {
                         c = instance;
                     }
                 });
-    
+
                 if(c) {
                     c.destroy();
                 }
-    
+
                 let ctx = document.getElementById('chart2').getContext('2d');
                 let chart = new Chart(ctx, {
                     type: "line",
