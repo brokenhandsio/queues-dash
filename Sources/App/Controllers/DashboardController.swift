@@ -37,7 +37,9 @@ struct DashboardController: RouteCollection {
         )
     }
 
-    private func getGraphData(req: Request) -> EventLoopFuture<(throughput: [DashboardViewContext.GraphData], execution: [DashboardViewContext.GraphData])> {
+    private func getGraphData(
+        req: Request
+    ) -> EventLoopFuture<(throughput: [DashboardViewContext.GraphData], execution: [DashboardViewContext.GraphData])> {
         let executionQuery: SQLQueryString = """
         SELECT
             avg(EXTRACT(EPOCH FROM ("completedAt" - "dequeuedAt"))) as "value",
@@ -64,7 +66,9 @@ struct DashboardController: RouteCollection {
             TO_CHAR("completedAt", 'HH:00')
         """
 
-        guard let sqlDb = req.db as? SQLDatabase else { return req.eventLoop.future(error: Abort(.internalServerError)) }
+        guard let sqlDb = req.db as? SQLDatabase else {
+            return req.eventLoop.future(error: Abort(.internalServerError))
+        }
         return sqlDb
             .raw(executionQuery)
             .all(decoding: DashboardViewContext.GraphData.self)
